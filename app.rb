@@ -1,5 +1,6 @@
 require 'sinatra'
 require_relative 'config/application'
+require 'faker'
 
 helpers do
   def current_user
@@ -28,5 +29,11 @@ get '/sign_out' do
 end
 
 get '/meetups' do
+  @meetups = Meetup.all.order(:name)
   erb :'meetups/index'
+end
+
+get '/meetups/:id' do
+  @meetup = Meetup.find(params[:id])
+  erb :'meetups/show'
 end

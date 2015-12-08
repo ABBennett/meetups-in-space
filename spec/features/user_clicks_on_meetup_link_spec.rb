@@ -30,7 +30,11 @@ feature "User sees meetups" do
 
   scenario "successful sign in" do
     visit '/'
-  
+    click_link("Hacker Monkeys")
+    save_and_open_page
     expect(page).to have_content "Hacker Monkeys"
+    expect(page).to have_content "This is where we code stuff"
+    expect(page).to have_content "344 Loring Street, Boston, MA"
+    expect(page).to have_content "344 Loring Street, Boston, MA"
   end
 end

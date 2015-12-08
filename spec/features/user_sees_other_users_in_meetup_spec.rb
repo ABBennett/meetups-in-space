@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 feature "User sees meetups" do
   let!(:jarlax) do
@@ -11,11 +12,28 @@ feature "User sees meetups" do
     )
   end
 
+  let!(:richardlax) do
+    User.create(
+      provider: "github",
+      uid: "2",
+      username: "richlax",
+      email: "richlax@launchacademy.com",
+      avatar_url: "https://avatars2.githubusercontent.com/u/174825?v=3&s=400"
+    )
+  end
+
 
   let!(:membership) do
     Membership.create(
     user_id: 1,
-    meetup_id: 1
+    meetup_id: 3
+    )
+  end
+
+  let!(:membership2) do
+    Membership.create(
+    user_id: 4,
+    meetup_id: 3
     )
   end
 
@@ -32,9 +50,10 @@ feature "User sees meetups" do
     visit '/'
     click_link("Hacker Monkeys")
     save_and_open_page
+    binding.pry
     expect(page).to have_content "Hacker Monkeys"
     expect(page).to have_content "This is where we code stuff"
     expect(page).to have_content "344 Loring Street, Boston, MA"
-    expect(page).to have_content "jarlax1"
+    expect(page).to have_content "richlax"
   end
 end

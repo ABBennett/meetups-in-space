@@ -3,6 +3,7 @@
 <h3><%= @meetup.details %></h3>
 <h3><%= @meetup.location %></h3>
 <h4>Creator: <%= @meetup.creator.username %></h4>
+<h4>MEETUPPERS</h4>
 <ul>
 <% @users.each do |user| %>
   <li> <%= user.username %> </li>

@@ -21,10 +21,13 @@ end
     name: "#{Faker::Hacker.adjective} #{Faker::Hacker.noun}",
     details: Faker::Lorem.sentence,
     location: "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.state}",
-    creator: Faker::Number.between(1, 100)
+    creator: User.offset(rand(User.count)).first
   )
 end
 
 1000.times do
-  UserMeetup.
+  Membership.find_or_create_by(
+  user_id: Faker::Number.between(1, 100),
+  meetup_id: Faker::Number.between(1, 100)
+  )
 end

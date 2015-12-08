@@ -1,6 +1,6 @@
-class CreateUsermeetups < ActiveRecord::Migration
+class CreateMemberships < ActiveRecord::Migration
   def change
-    create_table :usermeetups do |table|
+    create_table :memberships do |table|
       table.integer :user_id, null: false
       table.integer :meetup_id, null: false
     end

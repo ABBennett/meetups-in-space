@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-feature "User sees all meetups" do
-  let(:user) do
+feature "User sees meetups" do
+  let!(:jarlax) do
     User.create(
       provider: "github",
       uid: "1",
@@ -11,18 +11,25 @@ feature "User sees all meetups" do
     )
   end
 
-  let(:meetup) do
+
+  let!(:membership) do
+    Membership.create(
+    user_id: 1,
+    meetup_id: 1
+    )
+  end
+
+  let!(:meetup) do
       Meetup.create(
       name: "Hacker Monkeys",
       details: "This is where we code stuff",
       location: "344 Loring Street, Boston, MA",
-      creator: 3
+      creator: jarlax
     )
   end
 
-  scenario "user sees meetups" do
-    visit '/meetups'
-    sign_in_as user
+  scenario "successful sign in" do
+    visit '/'
     save_and_open_page
     expect(page).to have_content "Hacker Monkeys"
   end

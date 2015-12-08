@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature "User signs in" do
-  let(:user) do
+  let!(:user) do
     User.create(
       provider: "github",
       uid: "1",
@@ -11,10 +11,11 @@ feature "User signs in" do
     )
   end
 
+
   scenario "successful sign in" do
     visit '/'
     sign_in_as user
-
+    
     expect(page).to have_content "You're now signed in as #{user.username}!"
   end
 

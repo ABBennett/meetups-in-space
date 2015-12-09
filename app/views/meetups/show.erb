@@ -4,10 +4,9 @@
 <h3><%= @meetup.location %></h3>
 <br><br>
 <form action="/meetups/<%= @meetup.id %>" method="post">
-<input type="submit" id="submit" name="Join Meetup"></input>
+<input type="submit" id="Join Meetup" name="Join Meetup" value="Join Meetup!"></input>
 </form>
 <br><br>
-<% binding.pry %>
 <h4>Creator: <%= @meetup.creator.username %></h4>
 <h4>MEETUPPERS</h4>
 <ul>
@@ -17,5 +16,4 @@
     <li> <%= user.username %> </li>
   </ul>
   <% end %>
-
   </ul>

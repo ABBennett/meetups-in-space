@@ -31,5 +31,3 @@ end
   meetup_id: Faker::Number.between(1, 100)
   )
 end
-
-meetup = Meetup.where(id: 1).first

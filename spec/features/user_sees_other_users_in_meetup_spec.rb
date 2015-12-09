@@ -55,5 +55,6 @@ feature "User sees meetups" do
     expect(page).to have_content "This is where we code stuff"
     expect(page).to have_content "344 Loring Street, Boston, MA"
     expect(page).to have_content "richlax"
+    expect(page).to have_element("img")
   end
 end

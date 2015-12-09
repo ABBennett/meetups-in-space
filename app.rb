@@ -46,16 +46,19 @@ end
 
 post '/meetups/new' do
   @name = params[:name]
+  @errors = nil
   @location = params[:location]
   @details = params[:details]
-  meetup = Meetup.new(name: @name, location: @location, details: @details, creator_id: session[:user_id])
-  if meetup.save
+  @meetup = Meetup.new(name: @name, location: @location, details: @details, creator_id: session[:user_id])
+  if @meetup.save
     @meetup_id = Meetup.where(creator_id: session[:user_id]).last.id
     flash[:notice] = "New Meetup Created!"
     redirect 'meetups/' + @meetup_id.to_s
   else
+    @meetup.valid?
+    @errors = @meetup.errors.full_messages
     flash[:notice] = "Meetup Not Created"
-    redirect '/meetups/new'
+    erb :'meetups/new'
   end
 end
 

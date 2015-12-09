@@ -12,6 +12,11 @@
   </div>
 
 
+  <% if @errors.nil? %>
+  <% else @errors.each do |error| %>
+      <p><%= error %>
+      <% end %>
+  <% end %>
   <div class="columns text-left">
     <input type="submit" id="submit"></div>
   </div>

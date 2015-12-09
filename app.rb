@@ -49,15 +49,13 @@ post '/meetups/new' do
   @location = params[:location]
   @details = params[:details]
   meetup = Meetup.new(name: @name, location: @location, details: @details, creator_id: session[:user_id])
-  meetup.save
-  @meetup_id = Meetup.where(creator_id: session[:user_id]).last.id
   if meetup.save
+    @meetup_id = Meetup.where(creator_id: session[:user_id]).last.id
     flash[:notice] = "New Meetup Created!"
-    binding.pry
     redirect 'meetups/' + @meetup_id.to_s
   else
     flash[:notice] = "Meetup Not Created"
-    render :'meetups/new'
+    redirect '/meetups/new'
   end
 end
 

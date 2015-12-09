@@ -6,7 +6,7 @@ require 'faker'
 #
 #   Person.create(first_name: 'Eric', last_name: 'Kelly')
 
-100.times do
+150.times do
   User.create(
     provider: "Gitbub",
     uid: Faker::Internet.password(8),
@@ -15,6 +15,7 @@ require 'faker'
     avatar_url: Faker::Avatar.image
   )
 end
+
 
 100.times do
   Meetup.create(
@@ -27,7 +28,7 @@ end
 
 1000.times do
   Membership.find_or_create_by(
-  user_id: Faker::Number.between(1, 100),
-  meetup_id: Faker::Number.between(1, 100)
+  user_id: Faker::Number.between(1, User.count),
+  meetup_id: Faker::Number.between(1, Meetup.count)
   )
 end
